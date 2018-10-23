@@ -1,0 +1,2 @@
+
+CREATE PROCEDURE `sp_depurabitacora`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER delete from tbl_bitacora;
