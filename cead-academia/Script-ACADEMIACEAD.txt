@@ -1,0 +1,795 @@
+DROP SCHEMA `ACADEMIACEAD`;
+CREATE SCHEMA `ACADEMIACEAD`;
+Use ACADEMIACEAD;
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_TipoContacto`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_TipoContacto`
+(
+ `Id_Tipo`     INTEGER NOT NULL AUTO_INCREMENT,
+ `Tipo`        VARCHAR(15) NOT NULL ,
+ `Descripcion` VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_Tipo`)
+);
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Genero`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Genero`
+(
+ `Id_genero`   INTEGER NOT NULL AUTO_INCREMENT,
+ `Descripcion` CHAR(1) NOT NULL ,
+
+PRIMARY KEY (`Id_genero`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_EstadoCivil`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_EstadoCivil`
+(
+ `Id_estadocivil` INTEGER NOT NULL AUTO_INCREMENT,
+ `Descripcion`    VARCHAR(15) NOT NULL ,
+
+PRIMARY KEY (`Id_estadocivil`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Objetos`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Objetos`
+(
+ `Id_Objeto`         INTEGER NOT NULL AUTO_INCREMENT,
+ `Objeto`            VARCHAR(100) NOT NULL ,
+ `Descripcion`       VARCHAR(100) NOT NULL ,
+ `TipoObjeto`        VARCHAR(15) NOT NULL ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModificadoPor`     VARCHAR(15) ,
+
+PRIMARY KEY (`Id_Objeto`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Preguntas`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Preguntas`
+(
+ `Id_Pregunta`       INTEGER NOT NULL AUTO_INCREMENT,
+ `Pregunta`          VARCHAR(45) NOT NULL ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModificadoPor`     VARCHAR(15) ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+
+PRIMARY KEY (`Id_Pregunta`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Precio`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Precio`
+(
+ `Id_precio`   INTEGER NOT NULL AUTO_INCREMENT,
+ `Precio`      DECIMAL(8,2) NOT NULL ,
+ `Descripcion` VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_precio`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Planilla`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Planilla`
+(
+ `Id_Planilla` INTEGER NOT NULL AUTO_INCREMENT,
+ `Descripcion` VARCHAR(45) NOT NULL ,
+ `Valor`       DECIMAL(8,2) NOT NULL ,
+ `MesPago`     VARCHAR(15) NOT NULL ,
+
+PRIMARY KEY (`Id_Planilla`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_EstadoPago`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_EstadoPago`
+(
+ `Id_Estado`   INTEGER NOT NULL AUTO_INCREMENT,
+ `EstadoPago`  VARCHAR(15) NOT NULL ,
+ `Descripcion` VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_Estado`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_CobroMatricula`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_CobroMatricula`
+(
+ `Id_cobro`       INTEGER NOT NULL AUTO_INCREMENT,
+ `TotalMatricula` DECIMAL(8,2) NOT NULL ,
+
+PRIMARY KEY (`Id_cobro`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Descuento`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Descuento`
+(
+ `Id_Descuento` INTEGER NOT NULL AUTO_INCREMENT,
+ `Descuento`    VARCHAR(15) NOT NULL ,
+ `DescripDesc`  VARCHAR(20) NOT NULL ,
+ `ValorDesc`    DECIMAL(8,2) NOT NULL ,
+
+PRIMARY KEY (`Id_Descuento`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_ObsNotas`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_ObsNotas`
+(
+ `Cod_Obs`     INTEGER NOT NULL AUTO_INCREMENT,
+ `Observacion` VARCHAR(25) NOT NULL ,
+ `DescripObs`  VARCHAR(20) NOT NULL ,
+
+PRIMARY KEY (`Cod_Obs`)
+);
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_PeriodoAcademico`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_PeriodoAcademico`
+(
+ `Id_PeriodoAcm`  INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripPeriodo` VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_PeriodoAcm`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Modalidades`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Modalidades`
+(
+ `Id_Modalidad`     INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripModalidad` VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_Modalidad`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Estado`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Estado`
+(
+ `Id_Estado`      INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripEstatus` VARCHAR(15) NOT NULL ,
+
+PRIMARY KEY (`Id_Estado`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Roles`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Roles`
+(
+ `Id_Rol`            INTEGER NOT NULL AUTO_INCREMENT,
+ `Rol`               VARCHAR(30) NOT NULL ,
+ `DescripRol`        VARCHAR(20) NOT NULL ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModifcadoPor`      VARCHAR(15) ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+
+PRIMARY KEY (`Id_Rol`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Departamentos`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Departamentos`
+(
+ `Id_Departamentos` INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripDepart`    VARCHAR(45) NOT NULL ,
+
+PRIMARY KEY (`Id_Departamentos`)
+);
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Alumnos`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Alumnos`
+(
+ `Id_Alumno`       INTEGER NOT NULL AUTO_INCREMENT,
+ `PrimerNombre`    VARCHAR(15) NOT NULL ,
+ `SegundoNombre`   VARCHAR(15) ,
+ `PrimerApellido`  VARCHAR(15) NOT NULL ,
+ `SegundoApellido` VARCHAR(15) ,
+ `FechaNacimiento` DATE NOT NULL ,
+ `Cedula`          NUMERIC(13) NOT NULL ,
+ `Telefono`        NUMERIC(12) NOT NULL ,
+ `FechaIngreso`    DATE NOT NULL ,
+ `Id_genero`       INTEGER NOT NULL ,
+ `Id_estadocivil`  INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Alumno`),
+KEY `fkIdx_gen_alum` (`Id_genero`),
+CONSTRAINT `FK_gen_alum` FOREIGN KEY `fkIdx_gen_alum` (`Id_genero`) REFERENCES `ACADEMIACEAD`.`TBL_Genero` (`Id_genero`),
+KEY `fkIdx_estcivil_alum` (`Id_estadocivil`),
+CONSTRAINT `FK_estcivil_alum` FOREIGN KEY `fkIdx_estcivil_alum` (`Id_estadocivil`) REFERENCES `ACADEMIACEAD`.`TBL_EstadoCivil` (`Id_estadocivil`)
+);
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_ContRespon`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_ContRespon`
+(
+ `Id_ContResp` INTEGER NOT NULL AUTO_INCREMENT,
+ `Nombre`      VARCHAR(25) NOT NULL ,
+ `Apellido`    VARCHAR(25) NOT NULL ,
+ `Telefono`    NUMERIC(12) NOT NULL ,
+ `Id_Tipo`     INTEGER NOT NULL ,
+ `Id_Alumno`   INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_ContResp`),
+KEY `fkIdx_TCont_ContResp` (`Id_Tipo`),
+CONSTRAINT `FK_TCont_ContResp` FOREIGN KEY `fkIdx_TCont_ContResp` (`Id_Tipo`) REFERENCES `ACADEMIACEAD`.`TBL_TipoContacto` (`Id_Tipo`),
+KEY `fkIdx_Alumno_ContResp` (`Id_Alumno`),
+CONSTRAINT `FK_Alumno_ContResp` FOREIGN KEY `fkIdx_Alumno_ContResp` (`Id_Alumno`) REFERENCES `ACADEMIACEAD`.`TBL_Alumnos` (`Id_Alumno`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Permisos`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Permisos`
+(
+ `PermisoInsercion`     TEXT(1) NOT NULL ,
+ `PermisoEliminacion`   TEXT(1) NOT NULL ,
+ `PermisoActualizacion` TEXT(1) NOT NULL ,
+ `PermisoConsultar`     TEXT(1) NOT NULL ,
+ `Id_Rol`               INTEGER NOT NULL ,
+ `Id_Objeto`            INTEGER NOT NULL ,
+ `CreadoPor`            VARCHAR(15) NOT NULL ,
+ `ModificadoPor`        VARCHAR(15) ,
+ `FechaCreacion`        DATE NOT NULL ,
+ `FechaModificacion`    DATE ,
+
+KEY `fkIdx_Rol_Permisos` (`Id_Rol`),
+CONSTRAINT `FK_Rol_Permisos` FOREIGN KEY `fkIdx_Rol_Permisos` (`Id_Rol`) REFERENCES `ACADEMIACEAD`.`TBL_Roles` (`Id_Rol`),
+KEY `fkIdx_Obj_Permisos` (`Id_Objeto`),
+CONSTRAINT `FK_Obj_Permisos` FOREIGN KEY `fkIdx_Obj_Permisos` (`Id_Objeto`) REFERENCES `ACADEMIACEAD`.`TBL_Objetos` (`Id_Objeto`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Clases`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Clases`
+(
+ `Id_Clase`     INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripClase` VARCHAR(45) NOT NULL ,
+ `Duracion`     TIME NOT NULL ,
+ `Id_Modalidad` INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Clase`),
+KEY `fkIdx_Mod_Clase` (`Id_Modalidad`),
+CONSTRAINT `FK_Mod_Clase` FOREIGN KEY `fkIdx_Mod_Clase` (`Id_Modalidad`) REFERENCES `ACADEMIACEAD`.`TBL_Modalidades` (`Id_Modalidad`)
+);
+
+
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Personal`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Personal`
+(
+ `Id_Empleado`       INTEGER NOT NULL AUTO_INCREMENT,
+ `PrimerNombre`      VARCHAR(15) NOT NULL ,
+ `SegundoNombre`     VARCHAR(15) ,
+ `PrimerApellido`    VARCHAR(15) NOT NULL ,
+ `SegundoApellido`   VARCHAR(15) ,
+ `Telefono`          NUMERIC(12) NOT NULL ,
+ `Email`             VARCHAR(30) NOT NULL ,
+ `Cedula`            NUMERIC(13) NOT NULL ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModificadoPor`     VARCHAR(15) ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+ `Id_Departamentos`  INTEGER ,
+ `Id_estadocivil`    INTEGER NOT NULL ,
+ `Id_genero`         INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Empleado`),
+KEY `fkIdx_Dept_Pers` (`Id_Departamentos`),
+CONSTRAINT `FK_Dept_Pers` FOREIGN KEY `fkIdx_Dept_Pers` (`Id_Departamentos`) REFERENCES `ACADEMIACEAD`.`TBL_Departamentos` (`Id_Departamentos`),
+KEY `fkIdx_estcivil_pers` (`Id_estadocivil`),
+CONSTRAINT `FK_estcivil_pers` FOREIGN KEY `fkIdx_estcivil_pers` (`Id_estadocivil`) REFERENCES `ACADEMIACEAD`.`TBL_EstadoCivil` (`Id_estadocivil`),
+KEY `fkIdx_gen_pers` (`Id_genero`),
+CONSTRAINT `FK_gen_pers` FOREIGN KEY `fkIdx_gen_pers` (`Id_genero`) REFERENCES `ACADEMIACEAD`.`TBL_Genero` (`Id_genero`)
+);
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_PagoClases`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_PagoClases`
+(
+ `Id_Pago`     INTEGER NOT NULL AUTO_INCREMENT,
+ `Duracion`    DECIMAL NOT NULL ,
+ `Valor`       DECIMAL(8,2) NOT NULL ,
+ `Descripcion` VARCHAR(45) NOT NULL ,
+ `Id_Clase`    INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Pago`),
+KEY `fkIdx_Clases_PagoC` (`Id_Clase`),
+CONSTRAINT `FK_Clases_PagoC` FOREIGN KEY `fkIdx_Clases_PagoC` (`Id_Clase`) REFERENCES `ACADEMIACEAD`.`TBL_Clases` (`Id_Clase`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Secciones`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Secciones`
+(
+ `Id_Seccion`     INTEGER NOT NULL AUTO_INCREMENT,
+ `DescripSeccion` VARCHAR(45) NOT NULL ,
+ `HraClase`       TIME ,
+ `AulaClase`      VARCHAR(15) ,
+ `Id_Empleado`    INTEGER NOT NULL ,
+ `Id_PeriodoAcm`  INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Seccion`),
+KEY `fkIdx_Pers_Seccion` (`Id_Empleado`),
+CONSTRAINT `FK_Pers_Seccion` FOREIGN KEY `fkIdx_Pers_Seccion` (`Id_Empleado`) REFERENCES `ACADEMIACEAD`.`TBL_Personal` (`Id_Empleado`),
+KEY `fkIdx_Periodo_Seccion` (`Id_PeriodoAcm`),
+CONSTRAINT `FK_Periodo_Seccion` FOREIGN KEY `fkIdx_Periodo_Seccion` (`Id_PeriodoAcm`) REFERENCES `ACADEMIACEAD`.`TBL_PeriodoAcademico` (`Id_PeriodoAcm`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Asistencia`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Asistencia`
+(
+ `Id_asistencia` INTEGER NOT NULL AUTO_INCREMENT,
+ `Asistencia`    NUMERIC(4) ,
+ `Fecha`         DATE NOT NULL ,
+ `Id_Clase`      INTEGER NOT NULL ,
+ `Id_Empleado`   INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_asistencia`),
+KEY `fkIdx_Clas_Asis` (`Id_Clase`),
+CONSTRAINT `FK_Clas_Asis` FOREIGN KEY `fkIdx_Clas_Asis` (`Id_Clase`) REFERENCES `ACADEMIACEAD`.`TBL_Clases` (`Id_Clase`),
+KEY `fkIdx_Pers_Asis` (`Id_Empleado`),
+CONSTRAINT `FK_Pers_Asis` FOREIGN KEY `fkIdx_Pers_Asis` (`Id_Empleado`) REFERENCES `ACADEMIACEAD`.`TBL_Personal` (`Id_Empleado`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Usuarios`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Usuarios`
+(
+ `Id_usuario`           INTEGER NOT NULL AUTO_INCREMENT,
+ `Usuario`              VARCHAR(15) NOT NULL ,
+ `NombreUsuario`        VARCHAR(100) NOT NULL ,
+ `Contrasena`           LONGTEXT NOT NULL ,
+ `FechaUltimaConex`     TIMESTAMP ,
+ `PreguntasContestadas` BIGINT ,
+ `PrimerIngreso`        BIGINT ,
+ `FechaVencimiento`     DATE  ,
+ `CorreoElectronico`    VARCHAR(50) ,
+ `Id_Estado`            INTEGER ,
+ `Id_Rol`               INTEGER ,
+ `Id_Empleado`          INTEGER ,
+ `FechaCreacion`        DATE NOT NULL ,
+ `FechaModificacion`    DATE ,
+ `CreadoPor`            VARCHAR(15) NOT NULL ,
+ `ModificadoPor`        VARCHAR(15) ,
+
+PRIMARY KEY (`Id_usuario`),
+KEY `fkIdx_Rol_Usuario` (`Id_Rol`),
+CONSTRAINT `FK_Rol_Usuario` FOREIGN KEY `fkIdx_Rol_Usuario` (`Id_Rol`) REFERENCES `ACADEMIACEAD`.`TBL_Roles` (`Id_Rol`),
+KEY `fkIdx_Est_Usuario` (`Id_Estado`),
+CONSTRAINT `FK_Est_Usuario` FOREIGN KEY `fkIdx_Est_Usuario` (`Id_Estado`) REFERENCES `ACADEMIACEAD`.`TBL_Estado` (`Id_Estado`),
+KEY `fkIdx_Pers_Usuario` (`Id_Empleado`),
+CONSTRAINT `FK_Pers_Usuario` FOREIGN KEY `fkIdx_Pers_Usuario` (`Id_Empleado`) REFERENCES `ACADEMIACEAD`.`TBL_Personal` (`Id_Empleado`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Direcciones`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Direcciones`
+(
+ `Id_Direcciones` INTEGER NOT NULL AUTO_INCREMENT,
+ `Direccion`      VARCHAR(45) ,
+ `Id_Alumno`      INTEGER ,
+ `Id_Empleado`    INTEGER ,
+
+PRIMARY KEY (`Id_Direcciones`),
+KEY `fkIdx_Alumno_Dir` (`Id_Alumno`),
+CONSTRAINT `FK_Alumno_Dir` FOREIGN KEY `fkIdx_Alumno_Dir` (`Id_Alumno`) REFERENCES `ACADEMIACEAD`.`TBL_Alumnos` (`Id_Alumno`),
+KEY `fkIdx_Pers_Dir` (`Id_Empleado`),
+CONSTRAINT `FK_Pers_Dir` FOREIGN KEY `fkIdx_Pers_Dir` (`Id_Empleado`) REFERENCES `ACADEMIACEAD`.`TBL_Personal` (`Id_Empleado`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_ModSeccion`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_ModSeccion`
+(
+ `Id_Clase`   INTEGER NOT NULL AUTO_INCREMENT,
+ `Id_Seccion` INTEGER NOT NULL ,
+
+KEY `fkIdx_Clases_ModSec` (`Id_Clase`),
+CONSTRAINT `FK_Clases_ModSec` FOREIGN KEY `fkIdx_Clases_ModSec` (`Id_Clase`) REFERENCES `ACADEMIACEAD`.`TBL_Clases` (`Id_Clase`),
+KEY `fkIdx_Sec_ModSec` (`Id_Seccion`),
+CONSTRAINT `FK_Sec_ModSec` FOREIGN KEY `fkIdx_Sec_ModSec` (`Id_Seccion`) REFERENCES `ACADEMIACEAD`.`TBL_Secciones` (`Id_Seccion`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Bitacora`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Bitacora`
+(
+ `Id_Bitacora` INTEGER NOT NULL AUTO_INCREMENT,
+ `Fecha`       DATE NOT NULL ,
+ `Accion`      VARCHAR(20) NOT NULL ,
+ `Descripcion` VARCHAR(100) NOT NULL ,
+ `Id_usuario`  INTEGER NOT NULL ,
+ `Id_Objeto`   INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Bitacora`),
+KEY `fkIdx_Usuario_Bit` (`Id_usuario`),
+CONSTRAINT `FK_Usuario_Bit` FOREIGN KEY `fkIdx_Usuario_Bit` (`Id_usuario`) REFERENCES `ACADEMIACEAD`.`TBL_Usuarios` (`Id_usuario`),
+KEY `fkIdx_Obj_Bit` (`Id_Objeto`),
+CONSTRAINT `FK_Obj_Bit` FOREIGN KEY `fkIdx_Obj_Bit` (`Id_Objeto`) REFERENCES `ACADEMIACEAD`.`TBL_Objetos` (`Id_Objeto`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Hist_Contraseña`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Hist_Contrasena`
+(
+ `Id_Hist`           INTEGER NOT NULL AUTO_INCREMENT,
+ `Contrasena`        LONGTEXT NOT NULL ,
+ `Id_usuario`        INTEGER NOT NULL ,
+ `FechaModificacion` DATE ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModificadoPor`     VARCHAR(15) ,
+
+PRIMARY KEY (`Id_Hist`),
+KEY `fkIdx_Usuario_HistC` (`Id_usuario`),
+CONSTRAINT `FK_Usuario_HistC` FOREIGN KEY `fkIdx_Usuario_HistC` (`Id_usuario`) REFERENCES `ACADEMIACEAD`.`TBL_Usuarios` (`Id_usuario`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Parametros`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Parametros`
+(
+ `Id_Parametro`      INTEGER NOT NULL AUTO_INCREMENT,
+ `Parametro`         VARCHAR(50) NOT NULL ,
+ `Valor`             VARCHAR(100) NOT NULL ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+ `Id_usuario`        INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Parametro`),
+KEY `fkIdx_Usuario_Par` (`Id_usuario`),
+CONSTRAINT `FK_Usuario_Par` FOREIGN KEY `fkIdx_Usuario_Par` (`Id_usuario`) REFERENCES `ACADEMIACEAD`.`TBL_Usuarios` (`Id_usuario`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_PreguntasUsuario`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_PreguntasUsuario`
+(
+ `Respuesta`         VARCHAR(45) NOT NULL ,
+ `Id_usuario`        INTEGER NOT NULL ,
+ `Id_Pregunta`       INTEGER NOT NULL ,
+ `FechaCreacion`     DATE NOT NULL ,
+ `FechaModificacion` DATE ,
+ `CreadoPor`         VARCHAR(15) NOT NULL ,
+ `ModificadoPor`     VARCHAR(15) ,
+
+KEY `fkIdx_Usuario_PUsuario` (`Id_usuario`),
+CONSTRAINT `FK_Usuario_PUsuario` FOREIGN KEY `fkIdx_Usuario_PUsuario` (`Id_usuario`) REFERENCES `ACADEMIACEAD`.`TBL_Usuarios` (`Id_usuario`),
+KEY `fkIdx_Preguntas_PUsuario` (`Id_Pregunta`),
+CONSTRAINT `FK_Preguntas_PUsuario` FOREIGN KEY `fkIdx_Preguntas_PUsuario` (`Id_Pregunta`) REFERENCES `ACADEMIACEAD`.`TBL_Preguntas` (`Id_Pregunta`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_PlanillaPago`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_PlanillaPago`
+(
+ `MesPago`       VARCHAR(10) NOT NULL ,
+ `TotalPagar`    DECIMAL(8,2) ,
+ `FechaGen`      DATE ,
+ `FechaPago`     DATE ,
+ `Id_Empleado`   INTEGER NOT NULL ,
+ `Id_asistencia` INTEGER NOT NULL ,
+ `Id_Planilla`   INTEGER NOT NULL ,
+ `Id_Pago`       INTEGER NOT NULL ,
+
+KEY `fkIdx_Pers_PPago` (`Id_Empleado`),
+CONSTRAINT `FK_Pers_PPago` FOREIGN KEY `fkIdx_Pers_PPago` (`Id_Empleado`) REFERENCES `ACADEMIACEAD`.`TBL_Personal` (`Id_Empleado`),
+KEY `fkIdx_Asist_PPago` (`Id_asistencia`),
+CONSTRAINT `FK_Asist_PPago` FOREIGN KEY `fkIdx_Asist_PPago` (`Id_asistencia`) REFERENCES `ACADEMIACEAD`.`TBL_Asistencia` (`Id_asistencia`),
+KEY `fkIdx_Planilla_PPago` (`Id_Planilla`),
+CONSTRAINT `FK_Planilla_PPago` FOREIGN KEY `fkIdx_Planilla_PPago` (`Id_Planilla`) REFERENCES `ACADEMIACEAD`.`TBL_Planilla` (`Id_Planilla`),
+KEY `fkIdx_PClases_PPago` (`Id_Pago`),
+CONSTRAINT `FK_PClases_PPago` FOREIGN KEY `fkIdx_PClases_PPago` (`Id_Pago`) REFERENCES `ACADEMIACEAD`.`TBL_PagoClases` (`Id_Pago`)
+);
+
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Matricula`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Matricula`
+(
+ `Id_Matricula`  INTEGER NOT NULL ,
+ `Id_Alumno`     INTEGER NOT NULL ,
+ `Id_Modalidad`  INTEGER NOT NULL ,
+ `Id_Seccion`    INTEGER NOT NULL ,
+ `Id_PeriodoAcm` INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Matricula`),
+KEY `fkIdx_Alumno_Matricula` (`Id_Alumno`),
+CONSTRAINT `FK_Alumno_Matricula` FOREIGN KEY `fkIdx_Alumno_Matricula` (`Id_Alumno`) REFERENCES `ACADEMIACEAD`.`TBL_Alumnos` (`Id_Alumno`),
+KEY `fkIdx_Mod_Matricula` (`Id_Modalidad`),
+CONSTRAINT `FK_Mod_Matricula` FOREIGN KEY `fkIdx_Mod_Matricula` (`Id_Modalidad`) REFERENCES `ACADEMIACEAD`.`TBL_Modalidades` (`Id_Modalidad`),
+KEY `fkIdx_Seccion_Matr` (`Id_Seccion`),
+CONSTRAINT `FK_Seccion_Matr` FOREIGN KEY `fkIdx_Seccion_Matr` (`Id_Seccion`) REFERENCES `ACADEMIACEAD`.`TBL_Secciones` (`Id_Seccion`),
+KEY `fkIdx_Periodo_Matri` (`Id_PeriodoAcm`),
+CONSTRAINT `FK_Periodo_Matri` FOREIGN KEY `fkIdx_Periodo_Matri` (`Id_PeriodoAcm`) REFERENCES `ACADEMIACEAD`.`TBL_PeriodoAcademico` (`Id_PeriodoAcm`)
+);
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_Calificaciones`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_Calificaciones`
+(
+ `Id_Calificaciones` INTEGER NOT NULL AUTO_INCREMENT ,
+ `NotaFinal`         NUMERIC(5) NOT NULL ,
+ `Id_Alumno`         INTEGER NOT NULL ,
+ `Id_Seccion`        INTEGER NOT NULL ,
+ `Cod_Obs`           INTEGER NOT NULL ,
+ `Id_Clase`          INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Calificaciones`),
+KEY `fkIdx_Alumno_Cal` (`Id_Alumno`),
+CONSTRAINT `FK_Alumno_Cal` FOREIGN KEY `fkIdx_Alumno_Cal` (`Id_Alumno`) REFERENCES `ACADEMIACEAD`.`TBL_Alumnos` (`Id_Alumno`),
+KEY `fkIdx_Seccion_Cal` (`Id_Seccion`),
+CONSTRAINT `FK_Seccion_Cal` FOREIGN KEY `fkIdx_Seccion_Cal` (`Id_Seccion`) REFERENCES `ACADEMIACEAD`.`TBL_Secciones` (`Id_Seccion`),
+KEY `fkIdx_Obs_Cal` (`Cod_Obs`),
+CONSTRAINT `FK_Obs_Cal` FOREIGN KEY `fkIdx_Obs_Cal` (`Cod_Obs`) REFERENCES `ACADEMIACEAD`.`TBL_ObsNotas` (`Cod_Obs`),
+KEY `fkIdx_Clases_Cal` (`Id_Clase`),
+CONSTRAINT `FK_Clases_Cal` FOREIGN KEY `fkIdx_Clases_Cal` (`Id_Clase`) REFERENCES `ACADEMIACEAD`.`TBL_Clases` (`Id_Clase`)
+);
+
+
+
+
+
+-- ************************************** `ACADEMIACEAD`.`TBL_CuentaCorriente`
+
+CREATE TABLE `ACADEMIACEAD`.`TBL_CuentaCorriente`
+(
+ `Id_Cuenta`    INTEGER NOT NULL AUTO_INCREMENT,
+ `MontoTotal`   DECIMAL(8,2) NOT NULL ,
+ `Mespago`      VARCHAR(15) NOT NULL ,
+ `Id_Alumno`    INTEGER NOT NULL ,
+ `Id_cobro`     INTEGER NOT NULL ,
+ `Id_precio`    INTEGER NOT NULL ,
+ `Id_Estado`    INTEGER NOT NULL ,
+ `Id_Matricula` INTEGER NOT NULL ,
+ `Id_Descuento` INTEGER NOT NULL ,
+
+PRIMARY KEY (`Id_Cuenta`),
+KEY `fkIdx_Alum_CCorriente` (`Id_Alumno`),
+CONSTRAINT `FK_Alumno_CCorriente` FOREIGN KEY `fkIdx_Alum_CCorriente` (`Id_Alumno`) REFERENCES `ACADEMIACEAD`.`TBL_Alumnos` (`Id_Alumno`),
+KEY `fkIdx_CMatri_CCorriente` (`Id_cobro`),
+CONSTRAINT `FK_CMatri_CCorriente` FOREIGN KEY `fkIdx_CMatri_CCorriente` (`Id_cobro`) REFERENCES `ACADEMIACEAD`.`TBL_CobroMatricula` (`Id_cobro`),
+KEY `fkIdx_Precio_CCorriente` (`Id_precio`),
+CONSTRAINT `FK_Precio_CCorriente` FOREIGN KEY `fkIdx_Precio_CCorriente` (`Id_precio`) REFERENCES `ACADEMIACEAD`.`TBL_Precio` (`Id_precio`),
+KEY `fkIdx_EstPago_CCorriente` (`Id_Estado`),
+CONSTRAINT `FK_EstPago_CCorriente` FOREIGN KEY `fkIdx_EstPago_CCorriente` (`Id_Estado`) REFERENCES `ACADEMIACEAD`.`TBL_EstadoPago` (`Id_Estado`),
+KEY `fkIdx_Matri_CCorriente` (`Id_Matricula`),
+CONSTRAINT `FK_Matri_CCorriente` FOREIGN KEY `fkIdx_Matri_CCorriente` (`Id_Matricula`) REFERENCES `ACADEMIACEAD`.`TBL_Matricula` (`Id_Matricula`),
+KEY `fkIdx_Desc_CCorriente` (`Id_Descuento`),
+CONSTRAINT `FK_Desc_CCorriente` FOREIGN KEY `fkIdx_Desc_CCorriente` (`Id_Descuento`) REFERENCES `ACADEMIACEAD`.`TBL_Descuento` (`Id_Descuento`)
+);
+
+
+INSERT INTO `tbl_genero` (`Id_genero`, `Descripcion`) VALUES
+(1, 'F'),
+(2, 'M');
+
+INSERT INTO `tbl_estadocivil` (`Id_estadocivil`, `Descripcion`) VALUES
+(1, 'Soltero'),
+(2, 'Casado');
+
+
+INSERT INTO `tbl_alumnos` (`Id_Alumno`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `FechaNacimiento`, `Id_Genero`, `Id_EstadoCivil`, `Cedula`, `Telefono`, `FechaIngreso`) VALUES
+(1, 'ANA', 'MARIA', 'CRUZ', 'PAZ', '1976-10-10', 1, 1, '1008196704567', '22789044', '2018-10-10'),
+(2, 'Juan', 'PABLO', 'PINEDA', 'PONCE', '1978-12-31', 2, 2, '107197809360', '22780041', '2018-10-10'),
+(3, 'ROSA', 'RITA', 'MEDRANO', 'REINA', '2010-04-03', 1, 1, '801201008754', '22345678', '2018-10-17'),
+(4, 'LIA', 'ISA', 'RIVERA', ' ', '2007-03-03', 1, 1, '807201708653', '22345632', '2018-10-17'),
+(5, 'LUNA', 'BELLA', 'CHECK', 'PAZ', '1996-03-03', 1, 2, '807199608653', '22348902', '2018-10-17');
+
+INSERT INTO `tbl_departamentos` (`Id_Departamentos`, `DescripDepart`) VALUES
+(1, 'DOCENCIA'),
+(2, 'ADMINISTRACION');
+
+INSERT INTO `tbl_descuento` (`Id_Descuento`, `Descuento`, `DescripDesc`, `ValorDesc`) VALUES
+(1, 'MIEMBRO IGLESIA', 'MIEMBRO DE LA IGLESI', '0.15'),
+(2, 'GRUPAL', 'DESC GRUPAL', '0.20');
+
+INSERT INTO `tbl_estado` (`Id_Estado`, `DescripEstatus`) VALUES
+(1, 'ACTIVO'),
+(2, 'INACTIVO');
+
+INSERT INTO `tbl_estadopago` (`Id_Estado`, `EstadoPago`, `Descripcion`) VALUES
+(1, 'PAGADO', 'PAGADO'),
+(2, 'MORA', 'MORA');
+
+INSERT INTO `tbl_modalidades` (`Id_Modalidad`, `DescripModalidad`) VALUES
+(1, 'Diplomado'),
+(2, 'Tecnico');
+
+INSERT INTO `tbl_clases` (`Id_Clase`, `DescripClase`, `Duracion`, `Id_Modalidad`) VALUES
+(1, 'Piano', '01:00:00', 1),
+(2, 'Bateria', '00:45:00', 2);
+
+INSERT INTO `tbl_obsnotas` (`Cod_Obs`, `Observacion`, `DescripObs`) VALUES
+('1', 'APR', 'APRBADO'),
+('2', 'RPD', 'REPROBADO');
+
+INSERT INTO `tbl_periodoacademico` (`Id_PeriodoAcm`, `DescripPeriodo`) VALUES
+(1, 'IPAC2018'),
+(2, 'IIPAC2018');
+
+INSERT INTO `tbl_personal` (`Id_Empleado`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `Telefono`, `Email`, `Cedula`, `Id_genero`, `Id_EstadoCivil`, `Id_Departamentos`, `CreadoPor`, `ModificadoPor`, `FechaCreacion`, `FechaModificacion`) VALUES
+(1, 'MANUEL', NULL, 'ARGOS', 'PEREZ', '98703456', 'MANU.AORS3@HOTMAIL.COM', '1517198956702', 2, 1, 1, 'PRUEBA', 'PRUEBA', '2018-10-10', '2018-10-10');
+
+INSERT INTO `tbl_direcciones` (`Id_Direcciones`, `Direccion`, `Id_Alumno`, `Id_Empleado`) VALUES
+(1, 'Res.Palmira', 5, 1),
+(2, 'Col.Travesia', 1, 1);
+
+INSERT INTO `tbl_roles` (`Id_Rol`, `Rol`, `DescripRol`, `CreadoPor`, `ModifcadoPor`, `FechaCreacion`, `FechaModificacion`) VALUES
+(1, 'EDITAR', 'EDITAR', 'PRUEBA', 'PRUEBA', '2018-10-17', '2018-10-17');
+
+INSERT INTO `tbl_secciones` (`Id_Seccion`, `DescripSeccion`, `HraClase`, `AulaClase`, `Id_Empleado`, `Id_PeriodoAcm`) VALUES
+(1, 'matutina', '00:59:00', '206', 1, 1),
+(2, 'NOCTURNO', '00:59:00', '306', 1, 1);
+
+INSERT INTO `tbl_modseccion` (`Id_Clase`, `Id_Seccion`) VALUES
+(1, 1);
+
+INSERT INTO `tbl_asistencia` (`Id_asistencia`, `Asistencia`, `Fecha`, `Id_Clase`, `Id_Empleado`) VALUES
+(1, '1', '2018-10-17', 1, 1);
+
+INSERT INTO `tbl_usuarios` (`Id_usuario`, `Usuario`, `NombreUsuario`, `Contrasena`, `FechaUltimaConex`, `PreguntasContestadas`, `PrimerIngreso`, `FechaVencimiento`, `CorreoElectronico`, `Id_Estado`, `Id_Rol`, `Id_Empleado`, `FechaCreacion`, `FechaModificacion`, `CreadoPor`, `ModificadoPor`) VALUES 
+('1', 'admin', 'Administrador', '$2y$10$OFhx3m1FAs/Ek66DiJ8YzeapDD8zI145gWEDH099NKsW4dWWVgb2.', '2018-10-22', '1', '1', '2020-12-31', 'admin@admin.com', '1', '1', '1', '2018-10-22', '2018-10-22', 'adminsis', 'adminsis')
+

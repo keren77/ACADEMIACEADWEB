@@ -74,7 +74,7 @@
                           </div>
                           <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Usuario</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="nombre" name="text-input" placeholder="Usuario"  class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="text" id="nombre" name="user_n" placeholder="Usuario"  class="form-control"></div>
                           </div>
 							<div class="row form-group">
                             <div class="col col-md-3"><label for="hf-password" class=" form-control-label">Contraseña Anterior</label></div>
@@ -90,8 +90,8 @@
                             <div class="col-12 col-md-9"><input type="password" id="hf-password-conf" name="hf-password" placeholder="Confirme la contraseña..." class="form-control"></div>
                           </div>
 
-            
-                
+
+
                         </form>
                       </div>
                       <div class="card-footer">
@@ -105,13 +105,13 @@
 
 
                       <li class="btn btn-danger btn-sm">
-                        <a href="login.php?logout"> <i class="menu-icon fa fa-close"></i>Salir</a>
+                        <a href="Inicio.php"> <i class="menu-icon fa fa-close"></i>Salir</a>
                     </li>
-                    
+
 
                     </li> </button>
 
-                    
+
 
 
                       </div>

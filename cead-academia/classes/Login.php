@@ -37,6 +37,8 @@ class Login
         elseif (isset($_POST["login"])) {
             $this->dologinWithPostData();
         }
+
+
     }
 
     /**
@@ -46,9 +48,9 @@ class Login
     {
         // check login form contents
         if (empty($_POST['user_name'])) {
-            $this->errors[] = "Username field was empty.";
+            $this->errors[] = "El campo usuario esta vacio.";
         } elseif (empty($_POST['user_password'])) {
-            $this->errors[] = "Password field was empty.";
+            $this->errors[] = "El campo de contraseña esta vacio.";
         } elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
 
             // create a database connection, using the constants from config/db.php (which we loaded in index.php)
@@ -67,9 +69,9 @@ class Login
 
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT user_id, user_name, user_email, user_password_hash
-                        FROM users
-                        WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_name . "';";
+                $sql = "SELECT id_usuario, usuario, correoelectronico, contrasena
+                        FROM tbl_usuarios
+                        WHERE usuario = '" . $user_name . "' OR correoelectronico = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
 
                 // if this user exists
@@ -80,19 +82,18 @@ class Login
 
                     // using PHP 5.5's password_verify() function to check if the provided password fits
                     // the hash of that user's password
-                    if (password_verify($_POST['user_password'], $result_row->user_password_hash)) {
+                    if (password_verify($_POST['user_password'], $result_row->contrasena)) {
 
                         // write user data into PHP SESSION (a file on your server)
-                        $_SESSION['user_id'] = $result_row->user_id;
-						$_SESSION['user_name'] = $result_row->user_name;
-                        $_SESSION['user_email'] = $result_row->user_email;
+                         $_SESSION['user_id'] = $result_row->id_usuario ;
+                        $_SESSION['user_name'] = $result_row->Usuario;
+                        $_SESSION['user_email'] = $result_row->correoelectronico;
                         $_SESSION['user_login_status'] = 1;
-
                     } else {
                         $this->errors[] = "Usuario y/o contraseña no coinciden.";
                     }
                 } else {
-                    $this->errors[] = "Usuario y/o contraseña no coinciden.";
+                    $this->errors[] = "Usuario no existe.";
                 }
             } else {
                 $this->errors[] = "Problema de conexión de base de datos.";

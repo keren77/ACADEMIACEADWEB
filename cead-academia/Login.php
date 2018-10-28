@@ -1,30 +1,18 @@
 <?php
-
-include 'conexion.php';
-
-$conector = new basedatos();
-$conector->abrir_conexion();
-
-
 // checking for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     exit("Sorry, Simple PHP Login does not run on a PHP version smaller than 5.3.7 !");
 } else if (version_compare(PHP_VERSION, '5.5.0', '<')) {
     // if you are using PHP 5.3 or PHP 5.4 you have to include the password_api_compatibility_library.php
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
-    
-}
-//se incluye el archivo donde se define la logica de la bitacora
-require_once 'Gestion_bitacora.php';
-//objeto para llamar a la funcion de la bitacora
-$gestorb = new Bitacora();
 
-require_once("../libraries/password_compatibility_library.php");
+}
+require_once("libraries/password_compatibility_library.php");
 // include the configs / constants for the database connection
-require_once("../config/db.php");
+require_once("config/db.php");
 
 // load the login class
-require_once("../Login.php");
+require_once("classes/Login.php");
 
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process. in consequence, you can simply ...
@@ -34,9 +22,8 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-   header("location: ../inicio.php");
-   //se llama la funcion usa bitacora y se le envia los parametros segun lo que se registrara 
-   $gestorb->usa_bitacora('login al sistema', 'accediendo a la pagina principal del sistema', $_SESSION['user_id'], 3);
+   header("location: inicio.php");
+
 } else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
@@ -44,21 +31,31 @@ if ($login->isUserLoggedIn() == true) {
 	<!DOCTYPE html>
 <html lang="es">
 <head>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Login</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="../css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <!-- CS<link rel="stylesheet" href="css/style.css">S  -->
-<link rel="stylesheet" href="../css/style.css">
-<link href="../css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link rel="stylesheet" href="css/style.css">
+<link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
 <body >
 
+
+
  <div class="container">
+
+ 	<div class="container-login100" style="background-image: url();">
         <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="../img/mini_login.jpg" />
+            <img id="profile-img" class="profile-img-card" src="img/mini_login.jpg" />
 
             <p id="profile-name" class="profile-name-card"></p>
             <form method="post" accept-charset="utf-8" action="login.php" name="loginform" autocomplete="off" role="form" class="form-signin">
@@ -68,9 +65,9 @@ if ($login->isUserLoggedIn() == true) {
 					if ($login->errors) {
 						?>
 						<div class="alert alert-danger alert-dismissible" role="alert">
-						    <strong>Error!</strong> 
-						
-						<?php 
+						    <strong>Error!</strong>
+
+						<?php
 						foreach ($login->errors as $error) {
 							echo $error;
 						}
@@ -87,28 +84,56 @@ if ($login->isUserLoggedIn() == true) {
 							echo $message;
 						}
 						?>
-						</div> 
-						<?php 
+						</div>
+						<?php
 					}
 				}
 				?>
 
                 <span id="reauth-email" class="reauth-email"></span>
                 <label>Usuario</label>
-                <input class="form-control" placeholder="Usuario" name="user_name" type="text" value="" autofocus="" required>
+                <input class="form-control" placeholder="Ingrese su Usuario" name="user_name" type="text" maxlength="10" minlength="5" pattern="|^[a-zA-ZñÑ|" style="text-transform:uppercase" value="" autofocus="" required>
+
+                <div class="text-left">
                 <label>Contraseña</label>
-                <input class="form-control" placeholder="Contraseña" name="user_password" type="password" value="" autocomplete="off" required>
+                <div class="input-group col-7 my-4">
+
+                <input type="password" class="form-control pwd" placeholder="Ingrese su Contraseña" name="user_password"  maxlength="20" minlength="8" value="" autocomplete="off" required>
+
+                <span class="input-group-btn">
+                            <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                          </span>
+
+
+                          <script type="text/javascript">
+
+      $(".reveal").mousedown(function() {
+      $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
+  })
+  .mouseup(function() {
+  	$(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+  })
+  .mouseout(function() {
+  	$(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+  });                          </script>
+
+
+</div>
+</div>
                 <button type="submit" class="btn btn-lg btn-success btn-block btn-signin" name="login" id="submit">Iniciar Sesión</button>
 
                  <div class="checkbox">
-                            
-                            <label class="pull-right">
-                                <a href="#">Recuperar Contraseña</a>
-                            </label>
 
+                            <label class="text-right">
+                                <a href=".php">¿Olvidaste tu usuario y/o contraseña?</a>
+                            </label>
+                            <label class="pull-right">
+                                <a href="autoregistro.php">REGISTRATE</a>
+
+                            </label>
                         </div>
             </form><!-- /form -->
-            
+
         </div><!-- /card-container -->
     </div><!-- /container -->
   </body>
@@ -116,5 +141,3 @@ if ($login->isUserLoggedIn() == true) {
 
 	<?php
 }
-
-
