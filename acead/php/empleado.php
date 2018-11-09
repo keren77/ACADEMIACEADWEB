@@ -40,7 +40,7 @@ include '../lateral.php';
                       </div>
                       <div class="card-body card-block">
                         <form action="empleado.php" method="post" enctype="multipart/form-data" class="form-horizontal">
-                          
+
                           <div class="row form-group">
                             <div class="col-12 col-md-3">
                             <input type="text" id="EmpPrimerNombre" name="emp_primer_nombre" placeholder="Primer Nombre" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control"></div>
@@ -120,14 +120,9 @@ include '../lateral.php';
                           <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-ban"></i> Limpiar Formulario
                           </button>
-
                         </form>
                       </div>
-
-
                       <div class="card-footer">
-
-
                       </div>
                     </div>
                   </div>

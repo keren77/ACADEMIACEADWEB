@@ -1,63 +1,47 @@
 <?php
-/*
-session_start();
-require_once 'class.user.php';
-$user = new USER();
+include '../acead/php/conexion.php';
+require '../acead/php/funcs.php';
 
-if($user->is_logged_in()!="")
-{
-  $user->redirect('recuperar.php');
+$errors = array();
+
+if(!empty($_POST)){
+  $email = $mysqli->real_escape_string($_POST['email']);
+
+  if(!isEmail($email)){
+    $errors[] = "Debe ingresar un correo electronico valido";
+}
+    if(emailExiste($email)){
+      $user_id = getValor('id_usuario', 'CorreoElectronico', $email);
+      $usuario = getValor('usuario', 'CorreoElectronico', $email);
+
+      $token = generaTokenPass($email);
+
+      $url = 'http://'.$_SERVER["SERVER_NAME"].
+      '/acead/nuevacontra.php?userid='.$user_id.'&token='.$token;
+
+      $asunto = 'Recuperar Contraseña - Academia CEAD';
+      $cuerpo = "Buen  dia $usuario: <br /><br />Se ha solicitado un reinicio de Contrase&ntilde;a.
+      <br/><br/>Para restaurar la Contrase&ntilde;a,
+      visita la siguiente direcci&oacute;n: <a href='$url'>$url<a/>";
+
+      if(enviarEmail($email, $usuario, $asunto , $cuerpo)){
+        echo "Hemos enviado un correo electronico a la direccion $email
+        para restablecer su contrasena";
+        echo "<a href='index.php'>Iniciar Sesion</a>";
+        //echo '<script>alert("Hemos enviado un correo electronico a la direccion $email
+        //para restablecer su contrasena");window.location="index.php";</script>';
+        exit;
+
+      }else {
+          $errors[] = "Error al enviar correo";
+      }
+    }
+    else {
+      $errors[] = "Correo no existe";
+    }
 }
 
-if(isset($_POST['btn-submit']))
-{
-  $user1 = $_POST['NombreUsuario'];
-  
-  $stmt = $user->runQuery("SELECT Id_usuario,CorreoElectronico FROM tbl_usuarios WHERE NombreUsuario=:NombreUsuario LIMIT 1");
-  $stmt->execute(array(":NombreUsuario"=>$user1));
-  $row = $stmt->fetch(PDO::FETCH_ASSOC);  
-  if($stmt->rowCount() == 1)
-  {
-    $id = base64_encode($row['Iid_usuario']);
-       $email = $row['CorreoElectronico']; 
-    $code = md5(uniqid(rand()));
-    
-    $stmt = $user->runQuery("UPDATE tbl_usuarios SET token=:token WHERE CorreoElectronico=:CorreoElectronico");
-    $stmt->execute(array(":token"=>$code,"CorreoElectronico"=>$email));
-    
-    $message=  "
-           Bendiciones Estimad@ , 
-           <br /><br />
-           Usted ha recibido una solicitud para restablecer su contraseña del sistema de Información Iglesia Familia de la Fe, si no ha realizado esta solicitud ignore este correo.
-           <br /><br />
-           Haz click en el siguiente enlace para poder cambiar tu contraseña 'http://localhost/cead-academia/nuevacontra.php?id=$id&code=$code'
 
-            <img src= 'https://scontent.ftgu2-1.fna.fbcdn.net/v/t1.0-9/32073982_1818909318167509_8631119359818858496_n.jpg?_nc_cat=0&oh=4205ea549cb56033300ae8bd6d3140f6&oe=5B9B569D' 
-         
-           <br /><br />
-          
-           ";
-
-        
-          
-    $subject = "Familia de la Fe";
-    
-    $user->send_mail($email,$message,$subject);
-    
-    $msg = "<div class='alert alert-success'>
-          <button class='close' data-dismiss='alert'>&times;</button>
-          Se ha enviado un correo a $email.
-                    De click en el enlace para generar una nueva contraseña.
-          </div>";
-  }
-  else
-  {
-    $msg = "<div class='alert alert-danger'>
-          <button class='close' data-dismiss='alert'>&times;</button>
-          <strong>Error!</strong> Este correo no pertenece a ningun usuario. 
-          </div>";
-  }
-}*/
 ?>
 
 <head>
@@ -85,22 +69,32 @@ if(isset($_POST['btn-submit']))
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
-</head>
-   <!-- Left Panel -->
+    <html lang="es">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-   <style type="text/css">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- CS<link rel="stylesheet" href="css/style.css">S  -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+</head>
+      <style type="text/css">
      .rowIrmaX {
         margin-right: -15px;
         margin-left: 200px;
         margin-top: 15px;
-
-      }
+}
 .tblGrande{
   width: 100%;
   height: 100%;
-
 }
-
 .col-lg-8{
   margin-left: 165px;
 }
@@ -108,7 +102,7 @@ if(isset($_POST['btn-submit']))
 
 
     <aside id="left-panel" class="left-panel">
-<div class="col-lg-8">
+      <div class="col-lg-8">
                    <div class="card">
                    <div class="breadcrumbs">
             <div class="col-sm-8">
@@ -119,40 +113,27 @@ if(isset($_POST['btn-submit']))
                           <div class="card-body card-block">
                         <form action="" method="post" class="">
                           <table class="tblGrande">
-
                           <div class="input-icon right">
-                                
 
-                              <input  type="text" name="NombreUsuario" placeholder=" ingrese su usuario" class="form-control" required style="text-transform:uppercase;">
+                              <input  type="email" name="email" placeholder=" Ingrese su correo electronico" class="form-control" required>
                             </div>
-                        
-                       
                           </div>
                         </td></tr>
-   <tr><td>
-             
-
-
-               
-
-
-                  
-             
-
+                        <tr><td>
                             <center>
                             <div class="text-center my-4">
                           <div style="width: 330px; margin: 0 auto;">
                           <button id="autoregistro_boton" type="submit" class="btn btn-lg btn-info btn-block" name="botonautoregistro">
                                               <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                              <a href="index.php">Generar Nueva Contraseña</a>
+                                              <a href="">Generar Nueva Contraseña</a>
                                             </center>
-
                                           </button>
-</div></td></tr>
+                                        </div></td></tr>
                                   <a href="index.php" >ATRAS</a>
-
                                           </table>
                         </form>
+                        <?php echo resultBlock($errors); ?>
+
                       </div>
                     </div>
                   </div>
@@ -166,35 +147,4 @@ if(isset($_POST['btn-submit']))
     <script src="assets/js/main.js"></script>
   <!--<script src="assets/js/bootstrap-datetimepicker.js"></script>-->
 
-
-    
-
-
-
-
-<script>
-jQuery( document ).ready(function() {
-    //jQuery('.datepicker').datepicker();
-  //jQuery('.selectpicker').selectpicker();
-});
-</script>
-
-
-                  <!DOCTYPE html>
-<html lang="es">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- CS<link rel="stylesheet" href="css/style.css">S  -->
-<link rel="stylesheet" href="css/style.css">
-<link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-</head>
 <body >
