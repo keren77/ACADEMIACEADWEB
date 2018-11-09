@@ -44,13 +44,13 @@ class basedatos {
             //$sql = "insert into tbl_usuarios(Usuario, NombreUsuario, Contraseña, PreguntasContestadas, FechaVencimiento, Correo, Id_Estado, Id_Rol, Id_Empleado, FechaCreacion, FechaModificacion, CreadoPor) Values('".$U."', '".$NU."', '". password_hash($C, PASSWORD_DEFAULT)."', 3, '".$FV."', '".$CO."',1 ,".$R." , ".$IE." , '".$fechaactual."', '".$fechaactual."', '".$CP."')";
 
             $sql = "INSERT INTO tbl_usuarios(Usuario,Contrasena, PreguntasContestadas, FechaVencimiento, CorreoElectronico, Id_Estado, Id_Rol, Id_Empleado, FechaCreacion, FechaModificacion, CreadoPor)
-            VALUES('".$U."','".password_hash($C, PASSWORD_DEFAULT)."',3,'".$FV."','".$CO."',1,".$R.",".$IE.",'".$fechaactual."','".$fechaactual."','admin');";
-            $result=mysqli_query($conn, $sql);
+            VALUES('".$U."','".password_hash($C, PASSWORD_DEFAULT)."','3','".$FV."','".$CO."','1',".$R.",".$IE.",'".$fechaactual."','".$fechaactual."','admin')";
+            //$result=mysqli_query($conn, $sql);
 
             //QUerys para insertar las respuestas a las preguntas
-            $cons = "SELECT * FROM tbl_usuarios;";
-            $resultado = mysqli_query($conn, $cons);
-            $nuevoID = $resultado->num_rows;
+            //$cons = "SELECT * FROM tbl_usuarios;";
+            //$resultado = mysqli_query($conn, $cons);
+            //$nuevoID = $resultado->num_rows;
 
             echo '<script>alert("Usuario agregado exitosamente!!");window.location="nuevousuario.php";</script>';
         }catch(Exception $e){

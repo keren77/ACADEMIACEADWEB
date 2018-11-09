@@ -45,9 +45,9 @@ if((isset($_SESSION['id'])) && ($_SESSION['estado'] == 3)) {
       <a href="index.html"><img class="mb-2" src="img/logo_inicio.jpg" alt="" width="80" height="100"></a>
       <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
       <label  class="sr-only">Codigo</label>
-      <input type="text" id="user" name="user" class="form-control" placeholder="USUARIO" maxlength="10" minlength="4"  style="text-transform:uppercase" autofocus="" required>
+      <input type="text" id="user" name="user" class="form-control" placeholder="USUARIO" maxlength="20" minlength="4"  style="text-transform:uppercase" autofocus="" required>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="pass" name="pass" class="form-control" placeholder="CONTRASEÑA" maxlength="20" minlength="8" value="" autocomplete="off" required>
+      <input type="password" id="pass" name="pass" class="form-control" placeholder="CONTRASEÑA" maxlength="20" minlength="4" value="" autocomplete="off" required>
       <div class="checkbox mb-3">
         <label>
           <input id="verpass" type="checkbox" value="remember-me"> Ver Password

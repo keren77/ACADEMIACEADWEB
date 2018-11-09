@@ -212,6 +212,7 @@
     }else{
         echo '<script>alert("Las contraseñas no coinciden");window.location="autoregistro.php";</script>';
     }
+$contr_encrypt = password_hash($auto_contrasena,1);
 
 include '../acead/php/conexion.php';
 
