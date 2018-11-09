@@ -32,7 +32,7 @@ if(!(isset($_SESSION['id']))) {
     $preguntas=$row['valor'];
   }
 
-  $consulta2="SELECT Id_Pregunta,Pregunta FROM TBL_Preguntas LIMIT ".$preguntas;
+  $consulta2="SELECT Id_Pregunta,Pregunta FROM TBL_Preguntas ORDER BY RAND() LIMIT ".$preguntas;
 	$stmt1 = $mysqli->query($consulta2);
 	$con=array();
 	$n=0;
@@ -64,7 +64,7 @@ if(!(isset($_SESSION['id']))) {
 
   <body class="text-center">
   <div class="form-signin">
-  <form action="respuesta.php" method="get">
+  <form> <!--action="respuesta.php" method="get">-->
    <div class="card mb-3">
             <div class="card-header" id="ingresar_actualizar">
               <i id="i_ingresar_actualizar" class="fas fa-plus"></i> <h2>Preguntas de seguridad</h2></div>
