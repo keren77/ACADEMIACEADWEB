@@ -47,8 +47,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/home.php"><img src="img/logo_inicio.jpg" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="../index.php"><img src="img/logo_mini.jpg" alt="Logo"></a>
+                <a class="navbar-brand" href="home.php"><img src="img/logo_inicio.jpg" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="home.php"><img src="img/logo_mini.jpg" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -58,60 +58,60 @@
                     </li>
                     <h3 class="menu-title">Gesti&oacute;n de Alumnos</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Alumnos</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Registro de Alumnos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href= "../acead/php/alumno.php">Registro de Alumnos</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Productos y Servicios</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calendar"></i>Asistencia de Alumnos</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Asistencia de Alumnos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-calendar"></i><a href="../acead/php/forms.php">Asistencia 1</a></li>
-                            <li><i class="fa fa-calendar"></i><a href="../acead/php/forms.php">Asistencia 2</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Asistencia 1</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Asistencia 2</a></li>
                         </ul>
                     </li>
 
 
                      <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-check-square-o"></i>Matricula</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Matricula</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-check-square-o"></i><a href="../acead/php/forms.php">Pantalla de Matricula</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Pantalla de Matricula</a></li>
                         </ul>
                     </li>
 
                     <h3 class="menu-title">GESTION DE PERSONAL</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Registro de Personal</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Registro de Personal</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="menu-icon fa fa-user"></i><a href= "../acead/php/empleado.php">Creacion de Personal</a></li>
-                          <li><i class="menu-icon fa fa-user"></i><a href= "../acead/php/nuevousuario.php">Creacion de Usuario</a></li>
+                          <li><i class="menu-icon fa fa-fort-awesome"></i><a href= "../acead/php/empleado.php">Creacion de Personal</a></li>
+                          <li><i class="menu-icon fa fa-fort-awesome"></i><a href= "../acead/php/nuevousuario.php">Creacion de Usuario</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Docentes</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Docentes</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="../acead/php/forms.php">Usuarios</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
                      <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calendar"></i>Horas Trabajadas</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Horas Trabajadas</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="../acead/php/forms.php">Docente</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
                      <h3 class="menu-title">GESTION ACADEMICA</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Modalidad</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Modalidad</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-book"></i><a href="../acead/php/modalidad.php">Registro Modalidad</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Clases</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Clases</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-book"></i><a href="../acead/php/clases.php">Registro Clases</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
                      <li class="menu-item-has-children dropdown">

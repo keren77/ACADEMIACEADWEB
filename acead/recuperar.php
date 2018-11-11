@@ -1,6 +1,10 @@
 <?php
 include '../acead/php/conexion.php';
 require '../acead/php/funcs.php';
+session_start();
+if(!(isset($_SESSION['id']))) {
+    header("Location: index.php");
+}
 
 $errors = array();
 

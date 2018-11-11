@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BITACORA CEAD-ACADEMIA</title>
@@ -61,12 +62,12 @@
                         </ul>
                     </li>
 
-                   
+
 				<h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->
-                  
-					
-                   
-                   
+
+
+
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -94,20 +95,20 @@
                             </form>
                         </div>
 
-                       
 
-                       
+
+
                     </div>
                 </div>
 
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            
+
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                
+
                         </div>
                     </div>
 
@@ -159,7 +160,7 @@
                                                 <th>Descripcion</th>
                                                 <th>Usuario</th>
                                                 <th>Objeto</th>
-                                              
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -167,11 +168,11 @@
                                                  require_once 'C:\xampp\htdocs\cead-academia\config\db.php';
                                                  $objeto_conector = new basedatos();
                                                 $sql= 'select Fecha, Accion, Descripcion, Id_usuario, Id_objeto from tbl_bitacora;';
-                                                
+
                                                 try{
                                                     $objeto_conector->abrir_conexion();
                                                  $result = mysqli_query($objeto_conector->CONECTOR(), $sql);
-                                                 
+
                                                  //aqi se llenan las filas de la tabla con los resultados obtenidos en la consulta
                                                  while ($row = mysqli_fetch_array($result)){
                                                      echo "
@@ -181,15 +182,15 @@
                                                                     <td>".$row[2]."</td>
                                                                     <td>".$row[3]."</td>
                                                                     <td>".$row[4]."</td>
-                                                            </tr>";                                                    
+                                                            </tr>";
                                                  }
                                                  $objeto_conector->cerrar_connexion();
-                                                    
+
                                                 } catch(Exception $e){
                                                     echo 'Error:' .$e;
-                                                
+
                                                 }
-                                                           
+
                                            ?>
 
 
@@ -227,12 +228,12 @@
 										<div class="col col-md-3"><label for="text-input" class=" form-control-label">Rol</label></div>
 										<div class="col-12 col-md-9"><input type="text" id="rol" name="text-input" placeholder="Usuario" class="form-control"></div>
 									  </div>
-									 
+
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
-									
+
 									  <div class="row form-group">
 										<div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripci&oacute;n</label></div>
 										<div class="col-12 col-md-9"><input type="text" id="nombre" name="text-input" placeholder="Descripci&oacute;n" class="form-control"></div>
@@ -278,12 +279,12 @@
 										<div class="col col-md-3"><label for="text-input" class=" form-control-label">Rol</label></div>
 										<div class="col-12 col-md-9"><input type="text" id="rol" name="text-input" disabled="" placeholder="Administraci&oacute;n" class="form-control"></div>
 									  </div>
-									 
+
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
-									
+
 									  <div class="row form-group">
 										<div class="col col-md-3"><label for="text-input" class=" form-control-label">Descripci&oacute;n</label></div>
 										<div class="col-12 col-md-9"><input type="text" id="nombre" name="text-input" disabled="" placeholder="Descripci&oacute;n" class="form-control"></div>
@@ -348,7 +349,7 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
 	<!--<script src="assets/js/bootstrap-datetimepicker.js"></script>-->
-	
+
 	    <script src="assets/js/lib/data-table/datatables.min.js"></script>
     <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
     <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>

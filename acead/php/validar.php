@@ -9,14 +9,13 @@ if ((isset($_POST['user']))&&(isset($_POST['pass']))) {
 
 	$stmt = $mysqli->query($consulta);
 	session_start();
-	if($row=mysqli_fetch_array($stmt)){
-		if (password_verify($_POST['pass'],$row['Contrasena'])){
+	if(($row=mysqli_fetch_array($stmt))&&(password_verify($_POST['pass'],$row['Contrasena']))) {
 		$_SESSION['id']=$row['Id_usuario'];
 		$_SESSION['nombre']=$row['Usuario'];
 		$_SESSION['correo']=$row['CorreoElectronico'];
 		$_SESSION['estado']=$row['Id_Estado'];
 		$_SESSION['rol']=$_row['Id_Rold'];
-	}
+
 		if($_SESSION['estado']==1){
 			header("Location: ../preguntas.php");
 		}elseif($_SESSION['estado']==2){
@@ -27,6 +26,8 @@ if ((isset($_POST['user']))&&(isset($_POST['pass']))) {
 			header("Location: ../index.php?error=2");
 		}
 	}
+
+
 	else{
 		$_SESSION['intentos']+=1;
 		header("Location: ../index.php?error=1");
