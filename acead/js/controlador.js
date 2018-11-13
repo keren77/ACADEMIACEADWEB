@@ -17,6 +17,16 @@ $('#verpass').click(function(){
 	}
 });
 
+$('#verpass2').click(function(){
+	if($('#verpass2').is(':checked')){
+		$("#pas1").attr('type','text');
+    $("#pas2").attr('type','text');
+	}else{
+		$("#pas1").attr('type','password');
+    $("#pas2").attr('type','password');
+	}
+});
+
 function formu(valor) {
 	var nombre1=$('#InputNombre1').val();
 var nombre2=$('#InputNombre2').val();

@@ -19,9 +19,9 @@ include 'conexion.php';
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Inicio -</a></li>
-                            <li><a href="#">Usuarios -</a></li>
-                            <li class="active">Creaci&oacute;n de Empleado</li>
+                          <li><a href="#">Gesti&oacute;n de Personal -</a></li>
+                          <li><a href="#">Registro de Personal -</a></li>
+                          <li class="active">Creaci&oacute;n de Empleado</li>
                         </ol>
                     </div>
                 </div>

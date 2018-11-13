@@ -1,144 +1,97 @@
+<?php
+include 'php/conexion.php';
+if(!isset($_GET['user'])){
+    header("Location: recuperar.php?error");
+  }
+
+  $bool=false;
+  if(isset($_GET['error'])){
+    $bool=true;
+  }
+
+  $user=$_GET['user'];
+  $code=$_GET['code'];
+  $consulta = "SELECT * FROM TBL_Usuarios WHERE Usuario='".$user."' AND code='".$code."'";
+
+  $stmt = $mysqli->query($consulta);
+  if(($row=mysqli_fetch_array($stmt))) {
+    $id=$row['Id_usuario'];
+    }
+  else{
+    header("Location: recuperar.php?error");
+  }
+
+
+
+ ?>
+<!DOCTYPE html>
+<html>
 <head>
 
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="img/logo_mini.jpg">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Recuperacion de Contraseña</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
-    <link rel="stylesheet" href="assets/scss/style.css">
-    <link rel="stylesheet" href="assets/styleIrma.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+  <title>Recuperacion de Contraseña</title>
 
+
+  <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <title></title>
 </head>
-   <!-- Left Panel -->
+<body class="text-center">
 
-   <style type="text/css">
-     .rowIrmaX {
-        margin-right: -15px;
-        margin-left: 200px;
-        margin-top: 15px;
-
-      }
-.tblGrande{
-  width: 100%;
-  height: 100%;
-
-}
-
-.col-lg-8{
-  margin-left: 165px;
-}
-   </style>
-
-
-    <aside id="left-panel" class="left-panel">
+  <aside id="left-panel" class="left-panel">
 <div class="col-lg-8">
-                   <div class="card">
-                   <div class="breadcrumbs">
+      <div class="card">
+          <div class="breadcrumbs">
             <div class="col-sm-8">
-            </div>
-        </div>
-        <h3 class="text-center">Recuperacion de Contraseña</h3>
-        <img src="" />
-                          
-                        
+          </div>
+      </div>
+    <h3 class="text-center">Recuperacion de Contraseña</h3>
 
-                          <tr><td>
-               <div class="input-group col-md-12 my-2">
-                              <input type="password"  maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{5,8}$" title="La contraseña debe tener entre 5 y 8 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial."required id="contrasena" name="auto_contrasena" placeholder="Nueva Contraseña" class="form-control pwd1">
-
-                              <span class="input-group-btn">
-                                          <button class="btn btn-default reveal1" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-                                        </span>
-                                        <script type="text/javascript">
-                                              $(".reveal1").mousedown(function() {
-                                              $(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'text'));
-                                          })
-                                          .mouseup(function() {
-                                            $(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'password'));
-                                          })
-                                          .mouseout(function() {
-                                            $(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'password'));
-                                          });
-                                        </script>
+ <form action="php/generarnuevapass.php" method="GET">
+                        <div class="input-group col-md-12 my-3" align>
+                              <input  type="password" id="pas1" name="pas1" placeholder=" Ingrese su contraseña " class="" >
                             </div>
-                          </td></tr>
-                          <tr><td>
+                            <div class="input-group col-md-12 my-2">
+                              <input  type="password" id="pas2" name="pas2" placeholder=" Confirme su Contraseña " class="" >
+                            </div>
+                              <input  type="text" name="id"  hidden="true" value="<?php echo $id ?>">
+                              <div class="checkbox mb-3">
+                                <label>
+                                  <input id="verpass2" type="checkbox" value="remember-me"> Ver Password
+                                </label>
+                              </div>
 
-       <div class="input-group col-md-12 my-2">
-<input type="password" class="form-control pwd" placeholder="Confirmar Nueva Contraseña" name="auto_user_password"  value="" autocomplete="off" required maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{5,8}$" title="La contraseña debe tener entre 5 y 8 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial.">
+                            <?php
+                           if($bool){  ?>
 
-<span class="input-group-btn">
-            <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-          </span>
+                                    <label style="color: red;">mensaje de error</label>
 
-<script type="text/javascript">
-      $(".reveal").mousedown(function() {
-      $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
-  })
-  .mouseup(function() {
-    $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
-  })
-  .mouseout(function() {
-    $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
-  });
-</script>
-                          </div>
-                        </td></tr>
+                                    <?php  } ?>
 
-                          <tr><td>
-                            <center>
-                            <div class="text-center my-4">
-                          <div style="width: 330px; margin: 0 auto;">
-                          <button id="autoregistro_boton" type="submit" class="btn btn-lg btn-info btn-block" name="botonautoregistro">
-                                              <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                              <span href="">Restablecer Contraseña</span>
-                                            </center>
-
+                          <button type="submit" class="" name="guardarpass">
+                                              Generar Nueva Contraseña
                                           </button>
-</div></td></tr>
 
-                                          </table>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-
-<!-- Right Panel -->
+                                          <div class="text-center my-4">
+                                      		<button type="button" class="btn btn-link"><a href="index.php">SALIR</a></button>
+                                      	</div>
 
 
+</form>
+<script src="js/controlador.js"></script>
 
-      ?>
-
-                  <!DOCTYPE html>
-<html lang="es">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- CS<link rel="stylesheet" href="css/style.css">S  -->
-<link rel="stylesheet" href="css/style.css">
-<link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-</head>
-<body >
+</body>
+</html>
