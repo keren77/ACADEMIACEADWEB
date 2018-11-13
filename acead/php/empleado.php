@@ -3,7 +3,6 @@
 include '../header.php';
 include '../lateral.php';
 include 'conexion.php';
-
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -74,16 +73,12 @@ include 'conexion.php';
                                <option value="0" disabled="" selected="">Genero</option>
                               <!-- <option value="1">Fem</option> -->
                                <?php
-                               $connn = new mysqli('localhost','root','','academiacead');
-
-                               $query = $connn->query("SELECT * FROM tbl_genero");
-                               while($valores = mysqli_fetch_array($query)){
-                                echo "<option value='".$valores['id_genero']."'>".$valores['Descripcion']."</option>";
-                                $idgen = $valores['id_genero'];
-                              }
-                               ?>
-
-                             </select>
+                               $query = "SELECT * FROM tbl_genero";
+                               $result = $mysqli->query($query);
+                               while($row=mysqli_fetch_array($result)){ ?>
+                              <option value= "<?php echo $row['Id_genero'];?>"><?php echo $row['Descripcion'];?></option>
+                            <?php } ?>
+                              </select>
                            </div>
                          </div>
 
@@ -94,14 +89,11 @@ include 'conexion.php';
                               <select name="estado_civil" id="estado_civil" class="form-control">
                                 <option value="0">Estado Civil</option>
                                 <?php
-                                include 'conexion.php';
-
                                     $query = "SELECT * FROM tbl_estadocivil";
                                     $result = $mysqli->query($query);
-                                    while($row=mysqli_fetch_array($result)){
-                                       echo "<option value= '".$row['id_estadocivil']."'>".$row['Descripcion']."</option>";
-                                    }
-                                ?>
+                                    while($row=mysqli_fetch_array($result)){ ?>
+                                      <option value= "<?php echo $row['Id_estadocivil'];?>"><?php echo $row['Descripcion'];?></option>
+                                    <?php } ?>
 
                               </select>
                             </div>
@@ -163,22 +155,21 @@ include 'conexion.php';
       $emp_correo = $_POST['emp_correo'];
       $emp_direccion = $_POST['Empdireccion'];
 
-include 'conexion.php';
   if ($mysqli->connect_error) {
      die("Connection failed: " . $mysqli->connect_error);
  }
 
- $sql2 = "SELECT MAX(id_empleado) FROM tbl_personal";
+ $sql2 = "SELECT MAX(Id_Empleado) FROM tbl_personal";
  $idtemp =  $mysqli->query($sql2);
  while($row = mysqli_fetch_array($idtemp)) {
- $cal = $row['MAX(id_empleado)']+1;
+ $cal = $row['MAX(Id_Empleado)']+1;
  }
 
  $sql = "INSERT INTO tbl_personal (PrimerNombre, PrimerApellido, SegundoNombre, SegundoApellido,Telefono, Cedula, email, id_estadocivil, id_genero)
- VALUES (upper('$emp_prim_nombre'),upper('$emp_prim_apellido'), upper('$emp_seg_nombre'), upper('$emp_seg_apellido'),'$emp_telefono','$emp_ced','$emp_correo', '1','$idgen')";
+ VALUES (upper('$emp_prim_nombre'),upper('$emp_prim_apellido'), upper('$emp_seg_nombre'), upper('$emp_seg_apellido'),'$emp_telefono','$emp_ced','$emp_correo', '$emp_estadoc','$emp_genero')";
 
 
- $sql3 = "INSERT INTO tbl_direcciones(Direccion, id_empleado)
+ $sql3 = "INSERT INTO tbl_direcciones(Direccion, Id_Empleado)
  VALUES (upper('$emp_direccion'),'$cal')";
 
  if ($mysqli->query($sql)  === TRUE) {
@@ -187,11 +178,11 @@ include 'conexion.php';
 else {
  echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
-  if ($mysqli->query($sql2)  === TRUE) {
-  }
-  else {
-   echo "Error: " . $sql2 . "<br>" . $mysqli->error;
- }
+  //if ($mysqli->query($sql2)  === TRUE) {
+  //}
+  //else {
+  // echo "Error: " . $sql2 . "<br>" . $mysqli->error;
+ //}
  if ($mysqli->query($sql3)  === TRUE) {
 }
 else {
