@@ -2,10 +2,8 @@
 Descripcion:     pantalla para la creacion de usuaro
 -->
 <?php
-    include '../header.php';
-    include '../lateral.php';
-    include 'conexion.php';
-    include 'db.php';
+include '../header.php';
+include '../lateral.php';
 ?>
 
 
@@ -25,11 +23,12 @@ Descripcion:     pantalla para la creacion de usuaro
                             <option value="0" disabled="" selected="">Elegir una opcion</option>
 
                             <?php
-                                $connn = new mysqli('localhost','root','','academiacead');
+                            include 'conexion.php';
 
-                                $query = $connn->query("SELECT * FROM tbl_Personal");
-                                while($valores = mysqli_fetch_array($query)){
-                                    echo "<option value='".$valores['Id_Empleado']."'>".$valores['PrimerNombre']." ".$valores['PrimerApellido']."</option>";
+                                $query = "SELECT * FROM tbl_personal";
+                                $result = $mysqli->query($query);
+                                while($row=mysqli_fetch_array($result)){
+                                   echo "<option value= '".$row['id_empleado']."'>".$row['PrimerNombre']." ".$row['PrimerApellido']."</option>";
                                 }
                             ?>
                         </select>
@@ -38,7 +37,7 @@ Descripcion:     pantalla para la creacion de usuaro
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" name="txtusuario" placeholder="Nombre de Usuario a registrar" class="form-control" required="" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " style="text-transform:uppercase">
+                        <input type="text" id="RegUsuario" name="txtusuario" placeholder="Nombre de Usuario a registrar" class="form-control" required="">
                         <div class="input-group-addon">
                             <i class="fa fa-address-card"></i>
                         </div>
@@ -48,7 +47,7 @@ Descripcion:     pantalla para la creacion de usuaro
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="password" name="txtcontraseña1" placeholder="Contraseña" class="form-control" required="">
+                        <input type="password" id="RegPass" name="txtcontraseña1" placeholder="Contraseña" class="form-control" required="" required maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{5,8}$" title="La contraseña debe tener entre 5 y 8 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial.">
                         <div class="input-group-addon">
                             <i class="fa fa-lock"></i>
                         </div>
@@ -57,7 +56,7 @@ Descripcion:     pantalla para la creacion de usuaro
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="password" name="txtconfirmacontraseña" placeholder="Confirma contraseña" class="form-control" required="">
+                        <input type="password" id="RegPassConfirm" name="txtconfirmacontraseña" placeholder="Confirma contraseña" class="form-control" required="">
                         <div class="input-group-addon">
                             <i class="fa fa-shield"></i>
                         </div>
@@ -71,16 +70,22 @@ Descripcion:     pantalla para la creacion de usuaro
                     <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                 </div>
 
-                <div class="form-group"><label for="exampleInputEmail2" class="px-1  form-control-label">Correo</label><input type="email" id="exampleInputEmail2" name="txtcorreo" placeholder="jane.doe@example.com" required="" class="form-control"></div>
+                <div class="form-group"><label for="exampleInputEmail2" class="px-1  form-control-label">Correo</label><input type="email" id="RegEmail" name="txtcorreo" placeholder="jane.doe@example.com" required="" class="form-control"></div>
 
                 <div class="row col-md-12">
-                    <label for="selectSm" class=" form-control-label">Rol del Usuario: </label>
+
                     <div class="col-12 col-md-12">
                         <select name="cboroles" id="SelectLm" class="form-control-md form-control" required="">
-                            <option value="0" disabled="" selected="">Please select</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Director</option>
-                            <option value="3">Docente</option>
+                            <option value="0" disabled="" selected="">Rol de Usuario</option>
+                            <?php
+                            include 'conexion.php';
+
+                                $query = "SELECT * FROM tbl_roles";
+                                $result = $mysqli->query($query);
+                                while($row=mysqli_fetch_array($result)){
+                                   echo "<option value= '".$row['id_rol']."'>".$row['Rol']."</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -103,3 +108,18 @@ Descripcion:     pantalla para la creacion de usuaro
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$("#RegPass").keypress(function(tecla) {
+            if(tecla.charCode == 32) return false;
+        });
+        $("#RegEmail").keypress(function(tecla) {
+                    if(tecla.charCode == 32) return false;
+                });
+                $("#RegUsuario").keypress(function(tecla) {
+                            if(tecla.charCode == 32) return false;
+                        });
+                        $("#RegPassConfirm").keypress(function(tecla) {
+                                    if(tecla.charCode == 32) return false;
+                                });                    
+</script>

@@ -3,9 +3,6 @@
     if(!(isset($_SESSION['id']))) {
         header("Location: index.php");
   }
-
-
-
 ?>
 <!doctype html>
 <html class="no-js" lang=""> <!--<![endif]-->
@@ -60,9 +57,10 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Alumnos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href= "../acead/php/alumno.php">Registro de Alumnos</a></li>
+                            <li><i class="fa fa-user-plus"></i><a href= "../acead/php/alumno.php">Registro de Alumnos</a></li>
                         </ul>
                     </li>
+
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calendar"></i>Asistencia de Alumnos</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -84,14 +82,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Registro de Personal</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="menu-icon fa fa-user"></i><a href= "../acead/php/empleado.php">Creacion de Personal</a></li>
-                          <li><i class="menu-icon fa fa-user"></i><a href= "../acead/php/nuevousuario.php">Creacion de Usuario</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Docentes</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="../acead/php/forms.php">Usuarios</a></li>
+                          <li><i class="menu-icon fa fa-user-plus"></i><a href= "../acead/php/empleado.php">Creacion de Personal</a></li>
+                          <li><i class="menu-icon fa fa-user-plus"></i><a href= "../acead/php/nuevousuario.php">Creacion de Usuario</a></li>
                         </ul>
                     </li>
                      <li class="menu-item-has-children dropdown">
@@ -103,47 +95,31 @@
                      <h3 class="menu-title">GESTION ACADEMICA</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Modalidad</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Modalidad y Clases</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-book"></i><a href="../acead/php/modalidad.php">Registro Modalidad</a></li>
+                            <li><i class="menu-icon fa fa-book"></i><a href="../acead/php/modalidad.php">Registro Modalidad y Clases</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Clases</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-book"></i><a href="../acead/php/clases.php">Registro Clases</a></li>
-                        </ul>
+                    <li class="menu-item-has">
+                        <a href="../acead/php/clases.php"> <i class="menu-icon fa fa-mortar-board"></i>Historial Academico</a>
                     </li>
-                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Historial Academico</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
-                        </ul>
+
                     </li>
-                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Calificaciones</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
-                        </ul>
+<li class="menu-item-has">
+                        <a href="../acead/php/clases.php"> <i class="menu-icon fa fa-tasks"></i>Calificaciones</a>
                     </li>
                     <h3 class="menu-title">GESTION DE COBROS Y PAGOS</h3><!-- /.menu-title -->
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Cobro de Mensualidad</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
-                        </ul>
+                                   <li class="menu-item-has">
+                        <a href="../acead/php/forms.php"> <i class="menu-icon fa fa-money"></i>Cobro Matricula</a>
                     </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Cobro Matricula</a>
+
+      <li class="menu-item-has">
+                        <a href="../acead/php/forms.php"> <i class="menu-icon fa fa-money"></i>Cobro Matricula</a>
+                    </li>                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Planilla</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
-                        </ul>
-                    </li>
-                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Planilla</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="cliente.php">Usuarios</a></li>
+                            <li><i class="menu-icon fa fa-money"></i><a href="../acead/php/forms.php">Generar Planilla</a></li>
                         </ul>
                     </li>
 					<h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->

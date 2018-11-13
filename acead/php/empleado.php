@@ -2,6 +2,8 @@
 <?php
 include '../header.php';
 include '../lateral.php';
+include 'conexion.php';
+
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -43,17 +45,17 @@ include '../lateral.php';
 
                           <div class="row form-group">
                             <div class="col-12 col-md-3">
-                            <input type="text" id="EmpPrimerNombre" name="emp_primer_nombre" placeholder="Primer Nombre" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control"></div>
+                            <input type="text" id="EmpPrimerNombre" name="emp_primer_nombre" placeholder="Primer Nombre" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control" style="text-transform:uppercase"></div>
                             <div class="col-12 col-md-3">
-                            <input type="text" id="EmpSegundoNombre" name="emp_segundo_nombre" placeholder="Segundo Nombre" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control"></div>
+                            <input type="text" id="EmpSegundoNombre" name="emp_segundo_nombre" placeholder="Segundo Nombre" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control" style="text-transform:uppercase"></div>
                           </div>
 
 
 						  <div class="row form-group">
                             <div class="col-12 col-md-3">
-                            <input type="text" id="EmpPrimerApellido" name="emp_primer_apellido" placeholder="Primer Apellido" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos "class="form-control"></div>
+                            <input type="text" id="EmpPrimerApellido" name="emp_primer_apellido" placeholder="Primer Apellido" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos "class="form-control" style="text-transform:uppercase"></div>
                             <div class="col-12 col-md-3">
-                            <input type="text" id="EmpSegundoApellido" name="emp_segundo_apellido" placeholder="Segundo apellido" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control"></div>
+                            <input type="text" id="EmpSegundoApellido" name="emp_segundo_apellido" placeholder="Segundo apellido" maxlength="20" minlength="3" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" title="No deje espacios en blanco ni introduzca datos númericos " class="form-control" style="text-transform:uppercase"></div>
                           </div>
 
 
@@ -66,17 +68,19 @@ include '../lateral.php';
 
 
                           <div class="row form-group">
-                           <div class="col-12 col-md-3">
-                             <select name="select" id="EmpGenero" class="form-control">
-                               <option value="0">Genero</option>
-                               <?php
-                               include 'conexion.php';
 
-                                   $query = "SELECT * FROM tbl_genero";
-                                   $result = $mysqli->query($query);
-                                   while($row=mysqli_fetch_array($result)){
-                                      echo "<option value= '".$row['id_genero']."'>".$row['Descripcion']."</option>";
-                                   }
+                           <div class="col-12 col-md-3">
+                             <select name="cbo_emp_genero" class="form-control-gen form-control" id="selectgen">
+                               <option value="0" disabled="" selected="">Genero</option>
+                              <!-- <option value="1">Fem</option> -->
+                               <?php
+                               $connn = new mysqli('localhost','root','','academiacead');
+
+                               $query = $connn->query("SELECT * FROM tbl_genero");
+                               while($valores = mysqli_fetch_array($query)){
+                                echo "<option value='".$valores['id_genero']."'>".$valores['Descripcion']."</option>";
+                                $idgen = $valores['id_genero'];
+                              }
                                ?>
 
                              </select>
@@ -85,8 +89,9 @@ include '../lateral.php';
 
 
                            <div class="row form-group">
+
                             <div class="col-12 col-md-3">
-                              <select name="select" id="estado_civil" class="form-control">
+                              <select name="estado_civil" id="estado_civil" class="form-control">
                                 <option value="0">Estado Civil</option>
                                 <?php
                                 include 'conexion.php';
@@ -110,7 +115,7 @@ include '../lateral.php';
 						  <hr>
 
 						   <div class="row form-group">
-                          <div class="col-12 col-md-7"><textarea name="textarea-input" id="Empdireccion" rows="3" placeholder="Direcci&oacute;n" class="form-control"></textarea></div>
+                          <div class="col-12 col-md-7"><textarea name="Empdireccion" id="Empdireccion" rows="3" placeholder="Direcci&oacute;n" class="form-control"></textarea></div>
                           </div>
 
                           <button type="submit" class="btn btn-primary btn-sm" name="botonagregar">
@@ -132,10 +137,23 @@ include '../lateral.php';
     </div><!-- /#right-panel -->
 
     <?php
-    include 'conexion.php';
 
     if (isset($_POST['botonagregar'])) {
       // code...
+
+      if (isset($_POST['cbo_emp_genero'])){
+          $emp_genero = $_POST['cbo_emp_genero'];
+        }else {
+            echo '<script>alert("Debe seleccionar un GENERO");window.location="empleado.php";</script>';
+        }
+
+
+          if (isset($_POST['estado_civil'])){
+              $emp_estadoc = $_POST['estado_civil'];
+            }else {
+                echo '<script>alert("Debe seleccionar un estado civil");window.location="empleado.php";</script>';
+            }
+
       $emp_prim_nombre = $_POST['emp_primer_nombre'];
       $emp_seg_nombre = $_POST['emp_segundo_nombre'];
       $emp_prim_apellido = $_POST['emp_primer_apellido'];
@@ -143,22 +161,46 @@ include '../lateral.php';
       $emp_telefono = $_POST['emp_tel'];
       $emp_ced = $_POST['emp_cedula'];
       $emp_correo = $_POST['emp_correo'];
+      $emp_direccion = $_POST['Empdireccion'];
 
-
+include 'conexion.php';
   if ($mysqli->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
+     die("Connection failed: " . $mysqli->connect_error);
+ }
+
+ $sql2 = "SELECT MAX(id_empleado) FROM tbl_personal";
+ $idtemp =  $mysqli->query($sql2);
+ while($row = mysqli_fetch_array($idtemp)) {
+ $cal = $row['MAX(id_empleado)']+1;
  }
 
  $sql = "INSERT INTO tbl_personal (PrimerNombre, PrimerApellido, SegundoNombre, SegundoApellido,Telefono, Cedula, email, id_estadocivil, id_genero)
- VALUES (upper('$emp_prim_nombre'),upper('$emp_prim_apellido'), upper('$emp_seg_nombre'), upper('$emp_seg_apellido'),'$emp_telefono','$emp_ced','$emp_correo','1','2')";
+ VALUES (upper('$emp_prim_nombre'),upper('$emp_prim_apellido'), upper('$emp_seg_nombre'), upper('$emp_seg_apellido'),'$emp_telefono','$emp_ced','$emp_correo', '1','$idgen')";
 
- if ($mysqli->query($sql) === TRUE) {
-     //echo "New record created successfully";
- } else {
-     echo "Error: " . $sql . "<br>" . $mysqli->error;
+
+ $sql3 = "INSERT INTO tbl_direcciones(Direccion, id_empleado)
+ VALUES (upper('$emp_direccion'),'$cal')";
+
+ if ($mysqli->query($sql)  === TRUE) {
+  //echo "New record created successfully";
+}
+else {
+ echo "Error: " . $sql . "<br>" . $mysqli->error;
+}
+  if ($mysqli->query($sql2)  === TRUE) {
+  }
+  else {
+   echo "Error: " . $sql2 . "<br>" . $mysqli->error;
  }
+ if ($mysqli->query($sql3)  === TRUE) {
+}
+else {
+     echo "Error: " . $sql3 . "<br>" . $mysqli->error;
+   }
 
  $mysqli->close();
+
+ echo '<script>alert("El empleado ha sido creado");window.location="empleado.php";</script>';
     }
 
         ?>

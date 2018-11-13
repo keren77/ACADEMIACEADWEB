@@ -90,17 +90,25 @@ if(!(isset($_SESSION['id']))) {
 		include '../acead/php/conexion.php';
 
 		if(isset($_POST['botonguardar'])){
-			for ($i=0; $i < $preguntas; $i++) {
-		$txtpregunta = $_POST['respuesta'][$i];
+
+		$txtpregunta = $_POST['respuesta'];
 		$idusuario = $_SESSION['id'];
+		$arreglodat = array($txtpregunta,$idusuario,$idpreg, '2018-01-01', $username);
+
+		echo $arreglodat;
 
 		if ($mysqli->connect_error) {
 			 die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "INSERT INTO tbl_preguntasusuario(Respuesta, Id_usuario, Id_Pregunta, FechaCreacion, CreadoPor)
-		VALUES (upper('$txtpregunta'), '$idusuario', $idpreg, '2018-01-01', '$username')";
+		for ($i=0; $i < $preguntas; $i++) {
+			$sql = ("INSERT INTO tbl_preguntasusuario(Respuesta, Id_usuario, Id_Pregunta, FechaCreacion, CreadoPor)
+			VALUES('.$arreglodat[$preguntas].')");
 
+
+		//$sql = "INSERT INTO tbl_preguntasusuario(Respuesta, Id_usuario, Id_Pregunta, FechaCreacion, CreadoPor)
+		//VALUES (upper('$txtpregunta'), '$idusuario', $idpreg, '2018-01-01', '$username')";
+}
 
 		if ($mysqli->query($sql) === TRUE) {
 				//echo "New record created successfully";
@@ -109,7 +117,7 @@ if(!(isset($_SESSION['id']))) {
 		}
 		$mysqli->close();
 			echo '<script>alert("Preguntas Guardadas");window.location="home.php";</script>';
-		}
+
 }
 		 ?>
 

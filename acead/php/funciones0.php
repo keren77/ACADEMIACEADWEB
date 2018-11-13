@@ -36,7 +36,7 @@ $confirmacontraseña = $_POST['txtconfirmacontraseña'];
 $usuario = $_POST['txtusuario'];
 $fechavencimiento = $_POST['txtfechavencimiento'];
 $correo = $_POST['txtcorreo'];
-//$userid = $_SESSION['user_name'];
+//$userid = $_SESSION['id'];
 
 if ($contraseña === $confirmacontraseña){
 
@@ -48,7 +48,5 @@ if ($contraseña === $confirmacontraseña){
 
 //aqui se llama a la funcion para crear un nuevo usuario
 $conector->abrir_conexion();
-echo $usuarioid;
 $conector->insertausuario($usuario, $contraseña, $fechavencimiento, $correo, $roles, $usuarioid, "admin", $conector->CONECTOR());
 $conector->cerrar_connexion();
-

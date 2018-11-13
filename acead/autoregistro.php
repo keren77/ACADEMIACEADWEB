@@ -247,9 +247,11 @@ echo $cal;
   //print_r($cal);
 }
 
-  $sql2 = "INSERT INTO tbl_usuarios(Usuario, Contrasena, PreguntasContestadas, CorreoElectronico, id_empleado,Id_Estado, Id_Rol, CreadoPor)
+  $sql2 = "INSERT INTO tbl_usuarios(Usuario, Contrasena, PreguntasContestadas, CorreoElectronico, id_empleado, Id_Estado, Id_Rol, CreadoPor)
   VALUES (upper('$auto_usuario'), '$contr_encrypt', '3', '$auto_email','$cal','1','1', 'AUTOREGISTRO' )";
 
+  $sql4 = "INSERT INTO tbl_direcciones(Direccion, id_empleado)
+  VALUES (upper('$emp_direccion'),'$cal')";
 
 
   if ($mysqli->query($sql)  === TRUE) {
@@ -268,6 +270,11 @@ echo $cal;
 else {
       echo "Error: " . $sql3 . "<br>" . $mysqli->error;
     }
+if ($mysqli->query($sql4)  === TRUE) {
+    }
+else {
+      echo "Error: " . $sql4 . "<br>" . $mysqli->error;
+      }
 
 
   $mysqli->close();

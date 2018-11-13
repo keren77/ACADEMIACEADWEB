@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!(isset($_SESSION['id']))) {
+        header("Location: index.php");
+  }
+?>
+
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -120,7 +127,7 @@
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="../cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
-					<h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->
                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Usuarios</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -128,7 +135,7 @@
                         </ul>
                     </li>
 
-					<li class="menu-item-has-children dropdown">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Roles</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="../roles.php">Roles</a></li>
