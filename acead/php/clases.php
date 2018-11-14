@@ -4,6 +4,11 @@ Descripcion:     pantalla para la creacion de usuaro
 <?php
 include '../header.php';
 include '../lateral.php';
+
+session_start();
+if(!(isset($_SESSION['id']))) {
+    header("Location: index.php");
+}
 ?>
 
 
@@ -15,13 +20,13 @@ include '../lateral.php';
         </div>
         <div class="card-body card-block">
             <form action="funciones.php" method="post" id="frmclases" class
-                    
+
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text" id="RegUsuario" name="txtclase" placeholder="Nombre de clase a registrar" class="form-control" required="">
-                        
+
                     </div>
                 </div>
 
@@ -53,5 +58,5 @@ include '../lateral.php';
                 $("#RegUsuario").keypress(function(tecla) {
                             if(tecla.charCode == 32) return false;
                         });
-                                           
+
 </script>

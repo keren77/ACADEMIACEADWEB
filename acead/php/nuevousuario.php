@@ -6,6 +6,8 @@ Descripcion:     pantalla para la creacion de usuaro
     include '../lateral.php';
     include 'conexion.php';
     include 'db.php';
+
+    
 ?>
 
 

@@ -21,8 +21,6 @@ if(!isset($_GET['user'])){
     header("Location: recuperar.php?error");
   }
 
-
-
  ?>
 <!DOCTYPE html>
 <html>
@@ -62,10 +60,10 @@ if(!isset($_GET['user'])){
 
  <form action="php/generarnuevapass.php" method="GET">
                         <div class="input-group col-md-12 my-3" align>
-                              <input  type="password" id="pas1" name="pas1" placeholder=" Ingrese su contraseña " class="" >
+                              <input  type="password" id="pas1" name="pas1" placeholder=" Ingrese su contraseña " class="" maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{5,8}$" title="La contraseña debe tener entre 5 y 8 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial."required>
                             </div>
                             <div class="input-group col-md-12 my-2">
-                              <input  type="password" id="pas2" name="pas2" placeholder=" Confirme su Contraseña " class="" >
+                              <input  type="password" id="pas2" name="pas2" placeholder=" Confirme su Contraseña " class="" maxlength="30" minlength="5" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{5,8}$" title="La contraseña debe tener entre 5 y 8 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial."required>
                             </div>
                               <input  type="text" name="id"  hidden="true" value="<?php echo $id ?>">
                               <div class="checkbox mb-3">
@@ -92,6 +90,17 @@ if(!isset($_GET['user'])){
 
 </form>
 <script src="js/controlador.js"></script>
-
+<script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/javascript">
+$("#pas1").keypress(function(tecla) {
+            if(tecla.charCode == 32) return false;
+        });
+        $("#pas2").keypress(function(tecla) {
+                    if(tecla.charCode == 32) return false;
+                });
+                </script>
 </body>
 </html>

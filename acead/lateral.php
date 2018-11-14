@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    if(!(isset($_SESSION['id']))) {
-        header("Location: index.php");
-  }
-?>
-
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -41,7 +34,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Alumnos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href= "../php/alumno.php">Registro de Alumnos</a></li>
+                            <li><i class="fa fa-user"></i><a href= "../acead/php/alumno.php">Registro de Alumnos</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -69,12 +62,7 @@
                           <li><i class="menu-icon fa fa-user"></i><a href= "../php/nuevousuario.php">Creacion de Usuario</a></li>
                         </ul>
                     </li>
-                   <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Docentes</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="../acead/php/forms.php">Usuarios</a></li>
-                        </ul>
-                    </li>
+                   
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-calendar"></i>Horas Trabajadas</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -127,7 +115,7 @@
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="../cliente.php">Usuarios</a></li>
                         </ul>
                     </li>
-                    <h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->
+					<h3 class="menu-title">Administraci&oacute;n</h3><!-- /.menu-title -->
                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Usuarios</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -135,7 +123,7 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item-has-children dropdown">
+					<li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Roles</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="../roles.php">Roles</a></li>
