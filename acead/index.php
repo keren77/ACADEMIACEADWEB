@@ -42,7 +42,7 @@ if((isset($_SESSION['id'])) && ($_SESSION['estado'] == 3)) {
   <body class="text-center">
     <div class="form-signin">
     <form action="php/validar.php" method="post">
-      <a href="index.html"><img class="mb-2" src="img/logo_inicio.jpg" alt="" width="80" height="100"></a>
+      <a href="index.html"><img class="avatar" src="img/logo_inicio.jpg"></a>
       <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
       <label  class="sr-only">Codigo</label>
       <input type="text" id="user" name="user" class="form-control" placeholder="USUARIO" maxlength="20" minlength="4"  style="text-transform:uppercase" autofocus="" required>
