@@ -6,7 +6,9 @@ include 'conexion.php';
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<head>
+  <title>alumno</title>
+</head>
 
         <div class="breadcrumbs">
             <div class="col-sm-4">

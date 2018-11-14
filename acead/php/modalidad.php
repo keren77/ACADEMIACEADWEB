@@ -6,6 +6,9 @@ include '../header.php';
 include '../lateral.php';
 include 'conexion.php';
 ?>
+<head>
+  <title>Modalidades y Clases</title>
+</head>
 
 <div class="content mt-3">
     <div class="card">
@@ -103,7 +106,7 @@ include 'conexion.php';
        } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
        }
-       echo '<script>alert("La Modalidad se ha registrado exitosamente");href="..acead/home.php";</script>';
+       echo '<script>alert("La Modalidad se ha registrado exitosamente");href="..acead/modalidad.php";</script>';
         $mysqli->close();
            }
             ?>
@@ -134,7 +137,7 @@ if ($mysqli->query($sql) === TRUE) {
 } else {
  echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
-echo '<script>alert("La Clase se ha registrado exitosamente");href="..acead/home.php";</script>';
+echo '<script>alert("La Clase se ha registrado exitosamente");href="..acead/modalidad.php";</script>';
  $mysqli->close();
     }
     ?>
